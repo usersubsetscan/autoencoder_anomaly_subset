@@ -14,3 +14,7 @@ The highest mutual information exchange with the adversarial input happens on th
 - Running Subset Scanning over the reconstruction error [Jupyter Notebook](https://github.com/usersubsetscan/autoencoder_anomaly_subset/blob/master/run_subset_scanning_over_AE_ICLR_public.ipynb)
 - Generate Adversarial attacks used in the paper [Jupyter Notebook](https://github.com/usersubsetscan/autoencoder_anomaly_subset/blob/master/generate_adv_noise_ART.ipynb)
 - Pretrained Autoencoders and CNNs [Models .h5](https://github.com/usersubsetscan/autoencoder_anomaly_subset/tree/master/models)
+
+
+### Animation over each layer to see how the subset scanning score distributions.
+![subset scanning over layers](images/per_layer.gif)
