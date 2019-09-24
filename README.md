@@ -6,6 +6,7 @@
 The highest mutual information exchange with the adversarial input happens on the first layers (convolutional and maxpooling), this is why we see greatest divergence in both $C$ and $A_t$ subset scores distributions. Moving forward to the bottleneck layer, due to AE properties, the AE abstracts basic representations of the images, loosing subset scanning power due to the autoencoder is mapping the new sample to the expected distribution, you can see an almost overlap of distribution in *conv_2d_7*.
 
 <img src="images/ROC_Fashion_MNIST_AE_conv2d_1.png" alt="drawing" width="400"/><img src="images/fmnist_density_scores_conv_1.png" alt="drawing" width="400"/>
+
 (a) **ROC curves for BIM and FGSM noise attacks** as compared to the scores from test sets containing all natural images for layer *Conv2d_1*. (b) **Distribution of subset scores** for test sets of images over *Conv2d_1*. Test sets containing all natural images had lower than scores than test sets containing noised images. Higher proportion of noised images resulted in higher scores.
 
 ## This Repo contains code for:
