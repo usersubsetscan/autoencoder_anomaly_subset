@@ -7,3 +7,9 @@ The highest mutual information exchange with the adversarial input happens on th
 
 <img src="images/ROC_Fashion_MNIST_AE_conv2d_1.png" alt="drawing" width="400"/><img src="images/fmnist_density_scores_conv_1.png" alt="drawing" width="400"/>
 (a) **ROC curves for BIM and FGSM noise attacks** as compared to the scores from test sets containing all natural images for layer *Conv2d_1*. (b) **Distribution of subset scores** for test sets of images over *Conv2d_1*. Test sets containing all natural images had lower than scores than test sets containing noised images. Higher proportion of noised images resulted in higher scores.
+
+## This Repo contains code for:
+- Running Subset Scanning across all layers of several pretrained autoencoders [Jupyter Notebook](https://github.com/usersubsetscan/autoencoder_anomaly_subset/blob/master/run_subset_scanning_over_AE_ICLR_public.ipynb)
+- Running Subset Scanning over the reconstruction error [Jupyter Notebook](https://github.com/usersubsetscan/autoencoder_anomaly_subset/blob/master/run_subset_scanning_over_AE_ICLR_public.ipynb)
+- Generate Adversarial attacks used in the paper [Jupyter Notebook](https://github.com/usersubsetscan/autoencoder_anomaly_subset/blob/master/generate_adv_noise_ART.ipynb)
+- Pretrained Autoencoders and CNNs [Models .h5](https://github.com/usersubsetscan/autoencoder_anomaly_subset/tree/master/models)
