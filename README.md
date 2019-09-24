@@ -1,83 +1,9 @@
-## Readme
+## Unsupervised adversarial attack detection in autoencoders activations and Reconstruction Error with Subset Scanning
+![subset scanning over layers](images/ICLR_subsetAE.png)
 
-Add project directory to PYTHONPATH
+**Example of subset scanning scores across layers of an Autoencoder for adversarial BIM noise $ \epsilon = 0.01$**. In the top of the graph we can see Subset score distributions per nodes in layer (blue distribution of subset scores for clean images ($C$) or expected distribution, orange noised samples $A_t$.
+    The purple structure correspond to convolutional layers at the Encoder, red layers for the Decoder. 
+The highest mutual information exchange with the adversarial input happens on the first layers (convolutional and maxpooling), this is why we see greatest divergence in both $C$ and $A_t$ subset scores distributions. Moving forward to the bottleneck layer, due to AE properties, the AE abstracts basic representations of the images, loosing subset scanning power due to the autoencoder is mapping the new sample to the expected distribution, you can see an almost overlap of distribution in *conv_2d_7*.
 
-```
-export PYTHONPATH=$PYTHONPATH:`pwd`
-```
-
-Usage:
-
-Scanning and getting scores from clean and anomalous data sets
-
-```
-
-usage: main.py [-h] [--customfunction CUSTOMFUNCTION]
-               [--clean_ssize CLEAN_SSIZE] [--anom_ssize ANOM_SSIZE]
-               [--bgddata BGDDATA] [--bgdlabels BGDLABELS]
-               [--cleandata CLEANDATA] [--anomdata ANOMDATA] [--model MODEL]
-               [--modelclass MODELCLASS] [--conditional CONDITIONAL]
-               [--constraint CONSTRAINT] [--scorefunc SCOREFUNC]
-               [--pvaltest PVALTEST] [--layers LAYERS [LAYERS ...]]
-               [--run RUN] [--restarts RESTARTS] [--resultsfile RESULTSFILE]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --customfunction CUSTOMFUNCTION
-                        custom function after extraction of activation
-                        (experimental)
-  --clean_ssize CLEAN_SSIZE
-                        sample size of clean records for evaluation
-  --anom_ssize ANOM_SSIZE
-                        sample size of anomalous records for evaluation
-  --bgddata BGDDATA     background records
-  --bgdlabels BGDLABELS
-                        background labels
-  --cleandata CLEANDATA
-                        clean records
-  --anomdata ANOMDATA   anom records
-  --model MODEL         path to the model
-  --modelclass MODELCLASS
-                        path to model class
-  --conditional CONDITIONAL
-                        whether or not to compute pvalues ranges conditioned
-                        on each class label
-  --constraint CONSTRAINT
-                        search group
-  --scorefunc SCOREFUNC
-                        scoring function
-  --pvaltest PVALTEST   type of test
-  --layers LAYERS [LAYERS ...]
-                        name or index of layer(s) to extract
-  --run RUN             number of times to sample and run scan
-  --restarts RESTARTS   number of times to perform iterative restart
-  --resultsfile RESULTSFILE
-                        output file containing results
-```
-
-Visualizing detection power:
-
-```
-usage: detectionpower.py [-h] [--cleanscores CLEANSCORES]
-                         [--anomscores ANOMSCORES]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --cleanscores CLEANSCORES
-                        clean scores file path
-  --anomscores ANOMSCORES
-                        anomalous scores file path
-```
-
-
-Results file format
-
-The following results are written to a textfile in the following format.
-
-`score precision recall len_image_sub len_node_sub optimal_alpha node_subs image_subs`
-
-The delimeter is a single whitespace
-
-`node_subs` is a `,` seperated list of identified anomalous nodes
-
-Example on detecting BIM noise on a resnet model in the [examples](examples/cifar10_adversarial.py) folder
+<img src="images/ROC_Fashion_MNIST_AE_conv2d_1.png" alt="drawing" width="400"/><img src="images/fmnist_density_scores_conv_1.png" alt="drawing" width="400"/>
+(a) **ROC curves for BIM and FGSM noise attacks** as compared to the scores from test sets containing all natural images for layer *Conv2d_1*. (b) **Distribution of subset scores** for test sets of images over *Conv2d_1*. Test sets containing all natural images had lower than scores than test sets containing noised images. Higher proportion of noised images resulted in higher scores.
